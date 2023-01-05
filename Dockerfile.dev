@@ -1,0 +1,17 @@
+# Specify a base image
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+# Install some depenendencies
+RUN npm install
+
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+
+COPY . .
+
+# Default command
+CMD ["npm", "run", "start"]
+############################
